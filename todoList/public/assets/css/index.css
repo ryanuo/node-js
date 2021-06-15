@@ -170,17 +170,21 @@ label[for='toggle-all'] {
 }
 
 .todo-list li .toggle {
+	display: none;
 	text-align: center;
-	width: 40px;
+	width: 19px;
 	/* auto, since non-WebKit browsers doesn't support input styling */
 	height: auto;
 	position: absolute;
-	top: 0;
-	bottom: 0;
+    top: 11px;
+    left: 19px;
 	margin: auto 0;
 	border: none; /* Mobile Safari */
-	-webkit-appearance: none;
-	appearance: none;
+	/* -webkit-appearance: none;
+	appearance: none; */
+}
+.todo-list li:hover .toggle{
+	display: block;
 }
 
 .todo-list li .toggle:after {

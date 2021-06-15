@@ -27,6 +27,7 @@ app.post('/add',require('./route/todo/add'))
 app.post('/del',require('./route/todo/remove'))
 // 更新某个数据
 app.post('/update',require('./route/todo/update'))
+app.post('/delall',require('./route/todo/removeall'))
 require('./model/connect')
 // 告诉express框架模板的位置
 app.set('views', path.join(__dirname, 'views'))

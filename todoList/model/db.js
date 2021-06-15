@@ -5,7 +5,7 @@ let todoSchema =new mongoose.Schema({
         type:String
     },
     completed:{
-        type:String
+        type:Boolean
     }
 })
 // 创建集合

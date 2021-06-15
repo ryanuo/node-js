@@ -6,6 +6,7 @@ function fn() {
 		success: (res) => {
 			let html = template('list', { listData: res })
 			$('.todo-list').html(html)
+			$('#nums').text(res.length)
 		}
 	})
 }
@@ -71,6 +72,77 @@ $(document).on('dblclick', '.dbl', function () {
 					}
 				}
 			})
+		}
+	})
+})
+// 使用checkbox 使用change事件来监听 checkbox 复选框
+$(document).on('change', '.toggle', function () {
+	// // 判断是否checkbox呗选中
+	let status = $(this).prop('checked')
+	// 从他兄弟的属性中获取_id至d
+	let id = $(this).next('.dbl').data('id')
+	// 根据获取的id然后对数据进行更新， 将数据库中的completed的值改为true
+	if (id) {
+		$.ajax({
+			url: "/update",
+			type: 'post',
+			data: {
+				id,
+				completed: status
+			}, success: (res) => {
+				if (res.code == 1) {
+					fn()
+				}
+			}
+		})
+	}
+
+})
+// 选择未完成的任务
+$(document).on('click', '.filters li', function () {
+	let index = $(this).index()
+	console.log(index);
+	$(this).children('a').addClass('selected');
+	$(this).siblings('li').children('a').removeClass('selected');
+	function fn2() {
+		$.ajax({
+			url: '/todo',
+			type: 'get',
+			data: data,
+			success: (res) => {
+				let html = template('list', { listData: res })
+				$('.todo-list').html(html)
+				$('#nums').text(res.length)
+			}
+		})
+	}
+	if (index == 0) {
+		data = ''
+		fn2()
+	} else if (index == 2) {
+		data = {
+			completed: true
+		}
+		fn2()
+	} else if (index == 1) {
+		data = {
+			completed: false
+		}
+		fn2()
+	}
+
+})
+
+// 移除所有已完成
+
+$(document).on('click','.clear-completed',function(){
+	$.ajax({
+		url:'/delall',
+		type:'post',
+		success:(res)=>{
+			if (res.code == 1) {
+				fn()
+			}
 		}
 	})
 })
