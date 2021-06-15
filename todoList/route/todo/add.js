@@ -1,6 +1,6 @@
 const { todoList } = require('../../model/db.js')
 module.exports = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let { task } = req.body
     // 创建数据库集合
     try {

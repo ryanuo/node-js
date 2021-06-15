@@ -25,6 +25,8 @@ app.get('/todo',require('./route/todo/list'))
 app.post('/add',require('./route/todo/add'))
 // 删除某个数据
 app.post('/del',require('./route/todo/remove'))
+// 更新某个数据
+app.post('/update',require('./route/todo/update'))
 require('./model/connect')
 // 告诉express框架模板的位置
 app.set('views', path.join(__dirname, 'views'))
