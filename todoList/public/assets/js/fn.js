@@ -135,14 +135,23 @@ $(document).on('click', '.filters li', function () {
 
 // 移除所有已完成
 
-$(document).on('click','.clear-completed',function(){
+$(document).on('click', '.clear-completed', function () {
 	$.ajax({
-		url:'/delall',
-		type:'post',
-		success:(res)=>{
+		url: '/delall',
+		type: 'post',
+		success: (res) => {
 			if (res.code == 1) {
 				fn()
 			}
 		}
 	})
+})
+
+$(document).on('ajaxStart', function () {
+	NProgress.start();
+
+})
+
+$(document).on('ajaxComplete', function () {
+	NProgress.done();
 })
