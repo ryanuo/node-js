@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign in &laquo; Admin</title>
+  <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="https://cdn.jsdelivr.net/gh/Rr210/hexofixed@v0.47/js/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <div class="login">
+    <div class="login-wrap">
+      <img class="avatar" src="../assets/img/default.png">
+      <!-- 有错误信息时展示 -->
+      <!-- <div class="alert alert-danger">
+        <strong>错误！</strong> 用户名或密码错误！
+      </div> -->
+      <div class="form-group">
+        <label for="email" class="sr-only">邮箱</label>
+        <input id="email" type="email" class="form-control" placeholder="邮箱" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">密码</label>
+        <input id="password" type="password" class="form-control" placeholder="密码">
+      </div>
+      <button class="btn btn-primary btn-block">登 录</button>
+    </div>
+  </div>
+  <script>
+    $(document).on('click', '.btn-block', function () {
+      let email_value = $('#email').val().trim()
+      let password_value = $('#password').val().trim()
+      if (email_value.length == 0) {
+        alert('请填写邮箱地址')
+        return
+      }
+      if (password_value.length == 0) {
+        alert('请填写密码')
+        return
+      }
+      $.ajax({
+        type: 'post',
+        url: '/login',
+        data:{
+          email:email_value,
+          password:password_value
+        },
+        success: (res) => {
+          // 跳转到数据管理的首页
+          location.href = 'index.html'
+        },
+        error:(err)=>{
+          alert('用户名或者密码错误！！')
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
