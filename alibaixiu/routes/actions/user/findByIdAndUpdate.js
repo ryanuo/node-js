@@ -6,6 +6,7 @@ const { User, validateUser } = require('../../../model/User');
 const _ = require('lodash');
 
 module.exports = async (req, res) => {
+	// console.log(req.fields);
 	// 将密码、邮箱字段抛除
 	req.fields = _.pick(req.fields, ['nickName', 'role', 'avatar', 'status']);
 	req.fields._id = req.params['id'];

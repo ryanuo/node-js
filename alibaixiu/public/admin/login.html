@@ -56,6 +56,13 @@
         }
       })
     })
+    $.ajax({
+        type: "post",
+        url: "/logout",
+        success: function (res) {
+            console.log(res);
+        }
+    });
   </script>
 </body>
 

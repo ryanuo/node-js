@@ -32,7 +32,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 form_user">
           <form id="form-data">
             <h2>添加新用户</h2>
             <div class="form-group">
@@ -82,12 +82,12 @@
         <div class="col-md-8">
           <div class="page-action">
             <!-- show when multiple checked -->
-            <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
+            <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none" id="deleMany">批量删除</a>
           </div>
-          <table class="table table-striped table-bordered table-hover">
+          <table class="table table-striped table-bordered table-hover" id="checkstatus">
             <thead>
               <tr>
-                <th class="text-center" width="40"><input type="checkbox"></th>
+                <th class="text-center" width="40"><input type="checkbox" class="checkAll"></th>
                 <th class="text-center" width="80">头像</th>
                 <th>邮箱</th>
                 <th>昵称</th>
@@ -148,7 +148,7 @@
   <script type="text/html" id="tpl">
                   {{each data_users}}
                   <tr>
-                    <td class="text-center"><input type="checkbox"></td>
+                    <td class="text-center"><input type="checkbox" class="checkedone" data-id="{{$value._id}}"></td>
                     <td class="text-center"><img class="avatar" src="{{$value.avatar?$value.avatar:'/assets/img/default.png'}}"></td>
                     <td>{{$value.email}}</td>
                     <td>{{$value.nickName}}</td>
@@ -156,13 +156,14 @@
                     <td>{{$value.role=='admin'?'超级管理员':'普通用户'}}</td>
                     <td class="text-center">
                       <a href="javascript:;" class="btn btn-default btn-xs" id="exit" data-id="{{$value._id}}">编辑</a>
-                      <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                      <a href="javascript:;" class="btn btn-danger btn-xs" id="del_user" data-id="{{$value._id}}">删除</a>
                     </td>
                   </tr>
                   {{/each}}
                 </script>
   <!-- 用户编辑的渲染模板 -->
   <script type="text/html" id="modifyuser">
+                    <form id="modeify_user" data-id="{{_id}}">
                     <h2>修改用戶信息</h2>
                     <div class="form-group">
                       <label>头像</label>
@@ -184,10 +185,6 @@
                       <input class="form-control" type="text" placeholder="请输入昵称" name="nickName" value="{{nickName}}">
                     </div>
                     <div class="form-group">
-                      <label>密码</label>
-                      <input class="form-control" type="password" placeholder="请输入密码" name="password"value="">
-                    </div>
-                    <div class="form-group">
                       <div class="radio-inline">
                         <label><input type="radio" name="status" value="0" {{status==0?'checked':''}}>未激活</label>
                       </div>
@@ -206,6 +203,7 @@
                     <div class="form-group">
                       <button class="btn btn-primary" type="submit">修改</button>
                     </div>
+                  </form>
                 </script>
   <script>NProgress.done()</script>
 </body>
