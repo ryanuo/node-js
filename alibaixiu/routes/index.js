@@ -3,7 +3,7 @@ module.exports = app => {
 	// 用户
 	app.use('/users', require('./user'));
 	// // 分类
-	// app.use('/categories', require('./category'));
+	app.use('/categories', require('./category'));
 	// // 文章
 	// app.use('/posts', require('./post'));
 	// // 评论

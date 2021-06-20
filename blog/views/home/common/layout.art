@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章详情</title>
+        <link rel="stylesheet" href="/home/css/base.css">
+    {{block 'link'}}
+    {{/block}}
+</head>
+<body>
+	<!-- 头部框架开始 -->
+	<div class="header">
+		<div class="w1100">
+			<!-- 网站logo开始 -->
+			<h1 class="logo fl">
+				<a href="https://u.mr90.top" target="_blank"><img src="/home/images/logo.png" alt="harry"></a>
+			</h1>
+			<!-- 网站logo结束 -->
+			<!-- 网站导航开始 -->
+			<ul class="navigation fr">
+				<li>
+					<a href="/home">首页</a>
+				</li>
+				{{if userInfo}}
+					{{if userInfo.role == 'admin'}}
+						<li><a href="/admin/user">超级管理员管理页面</a></li>
+						<li><a href="javascript:;">用户[{{userInfo.username}}]已登录</a></li>
+						<li><a href="/home/logout">退出登录</a></li>
+					{{else}}
+						<li><a href="javascript:;">用户[{{userInfo.username}}]已登录</a></li>
+						<li><a href="/home/logout">退出登录</a></li>
+					{{/if}}
+				{{else}}
+				<li>
+					<a href="/admin/login">登录</a>
+				</li>
+				{{/if}}
+			</ul>
+			<!-- 网站导航结束 -->
+		</div>
+	</div>
+	<!-- 头部框架结束 -->
+    {{block 'main'}}
+    {{/block}}
+</body>
+</html>

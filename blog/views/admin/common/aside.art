@@ -1,0 +1,21 @@
+    	<!-- 侧边栏 -->
+        <div class="aside fl">
+            <ul class="menu list-unstyled">
+                <li>
+                    <a class="item {{currentLink == 'user' ? 'active' : ''}}" href="/admin/user?page=1">
+						<span class="glyphicon glyphicon-user"></span>
+						用户管理
+					</a>
+                </li>
+                <li>
+                    <a class="item {{currentLink == 'acticle' ? 'active' : ''}}" href="/admin/article?page=1">
+			  			<span class="glyphicon glyphicon-th-list"></span>
+			  			文章管理
+			  		</a>
+                </li>
+            </ul>
+            <div class="cprt">
+                Powered by <a href="https://u.mr90.top" target="_blank">Harryの心阁</a>
+            </div>
+        </div>
+        <!-- 侧边栏 -->

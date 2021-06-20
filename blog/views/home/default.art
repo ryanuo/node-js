@@ -1,0 +1,41 @@
+{{extend './common/layout.art'}}
+{{block 'link'}}
+	<link rel="stylesheet" href="/home/css/index.css">
+{{/block}}
+{{block 'main'}}
+	<!-- 文章列表开始 -->
+	<ul class="list w1100">
+		{{each articles.records}}
+			<li class="fl">
+			<a href="/home/article?id={{@$value._id}}" class="thumbnail">
+				<img src="{{$value.cover}}">
+			</a>
+			<div class="content">
+				<a class="article-title" href="/home/article?id={{@$value._id}}">{{$value.title}}</a>
+				<div class="article-info">
+					<span class="author">{{$value.author.username}}</span>
+					<span>{{dateFormat($value.publishDate,'yyyy-mm-dd')}}</span>
+				</div>
+				<div class="brief">
+					{{@$value.content.replace(/<\/?.+?>/g,'')}}
+				</div>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+	<!-- 文章列表结束 -->
+
+	<!-- 分页开始 -->
+	<div class="page w1100">
+		{{if articles.page > 1}}
+		<a href="/home?page={{articles.page - 1}}">上一页</a>
+		{{/if}}
+		{{each articles.display}}
+		<a href="/home?page={{$value}}" class="{{articles.page == $value ? 'active' : '' }}">{{$value}}</a>
+		{{/each}}
+		{{if articles.page < articles.pages}}
+		<a href="/home?page={{articles.page-0+1}}">下一页</a>
+		{{/if}}
+	</div>
+	<!-- 分页结束 -->
+{{/block}}
