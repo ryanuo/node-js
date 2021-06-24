@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <title>论文降重</title>
+  </head>
+  <body>
+    <div>
+      <label for="appid">appid</label>
+      <input type="text" class="appid" id="appid" />
+      <label for="key">秘钥</label>
+      <input type="text" class="key" id="key" />
+      <label for="level">去重等级</label>
+      <select name="level" id="" class="level">
+        <option value="simple">简单</option>
+        <option value="middle">中等</option>
+        <option value="high">高级</option>
+      </select>
+      <a href="https://api.fanyi.baidu.com/api/trans/product/apichoose"
+        >获取百度通用翻译API</a>
+      <a href="javascript:;" id="clear_storage">清除缓冲</a>
+    </div>
+    <hr />
+    <div>
+      <textarea placeholder="请输入要降重的段落！" name="" class="fromText" cols="50" rows="20"></textarea>
+      <button class="switchBtn">转换</button>
+      <div class="toText"></div>
+    </div>
+
+    <br />
+    日志：
+    <textarea name="" class="log" cols="60" rows="10">
+请先到百度翻译开放平台注册账号、实名认证免费升级到高级版、申请通用翻译api、将appid和密钥粘贴到本工具
+如果出现闪退，请先自行检查
+1. 是否是个人账户
+2. 是否进行了高级认证
+3. 是否开通了通用翻译api
+    </textarea>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Rr210/image@master/hexo/3/art-template.js"></script>
+  </body>
+</html>
