@@ -10,40 +10,50 @@
     <title>论文降重</title>
   </head>
   <body>
-    <div>
-      <label for="appid">appid</label>
-      <input type="text" class="appid" id="appid" />
-      <label for="key">秘钥</label>
-      <input type="text" class="key" id="key" />
-      <label for="level">去重等级</label>
-      <select name="level" id="" class="level">
-        <option value="simple">简单</option>
-        <option value="middle">中等</option>
-        <option value="high">高级</option>
-      </select>
-      <a href="https://api.fanyi.baidu.com/api/trans/product/apichoose"
-        >获取百度通用翻译API</a>
-      <a href="javascript:;" id="clear_storage">清除缓冲</a>
+    <div class="top">
+      <div class="isStor">
+        <div class="is_item">
+          <label for="appid">appid</label>
+          <input type="text" class="appid" id="appid" />
+        </div>
+        <div class="is_item">
+          <label for="key">秘钥</label>
+          <input type="text" class="key" id="key" />
+        </div>
+      </div>
+      <div class="remind">
+        <label for="level">去重等级</label>
+        <select name="level" id="" class="level">
+          <option value="simple">简单</option>
+          <option value="middle">中等</option>
+          <option value="high">高级</option>
+        </select>
+        <a href="https://api.fanyi.baidu.com/api/trans/product/apichoose"
+          >获取百度通用翻译API</a>
+        <a href="javascript:;" id="clear_storage">清除缓冲</a>
+      </div>
     </div>
     <hr />
-    <div>
+    <div class="content">
       <textarea placeholder="请输入要降重的段落！" name="" class="fromText" cols="50" rows="20"></textarea>
-      <button class="switchBtn">转换</button>
-      <div class="toText"></div>
+      <textarea placeholder="降重的结果为：" class="toText" cols="50" rows="20"></textarea>
     </div>
-
-    <br />
-    日志：
-    <textarea name="" class="log" cols="60" rows="10">
-请先到百度翻译开放平台注册账号、实名认证免费升级到高级版、申请通用翻译api、将appid和密钥粘贴到本工具
-如果出现闪退，请先自行检查
-1. 是否是个人账户
-2. 是否进行了高级认证
-3. 是否开通了通用翻译api
-    </textarea>
+    <button class="switchBtn">转换</button>
+    <div class="log_warp">
+      <div class="top_item">查看日志</div>
+      <div class="text_log">
+        <textarea name="" class="log" cols="60" rows="10" placeholder="   请先到百度翻译开放平台注册账号、实名认证免费升级到高级版、申请通用翻译api、将appid和密钥粘贴到本工具如果出现闪退，请先自行检查 
+        1. 是否是个人账户 
+        2. 是否进行了高级认证 
+        3. 是否开通了通用翻译api"></textarea>
+      </div>
+    </div>
+    <footer>
+      Copyright © 2020-2021 <a href="https://u.mr90.top" target="_blank">Harry</a>. All rights reserved.
+    </footer>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/Rr210/image@master/hexo/3/art-template.js"></script>
   </body>
 </html>

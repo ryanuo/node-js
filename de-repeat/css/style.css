@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    cursor: url(https://cdn.jsdelivr.net/gh/Rr210/image@master/hexo/4/default.cur), default;
+}
+
+a, input, button, img, i, em, .shuff li {
+    cursor: url(https://cdn.jsdelivr.net/gh/Rr210/image@master/hexo/4/pointer.cur), pointer;
+}
+
+body {
+    width: 100%;
+    font-size: 16px;
+    font-family: myfont !important;
+}
+
+@font-face {
+    font-family: myfont;
+    src: url(https://cdn.jsdelivr.net/gh/Rr210/image@master/hexo/4/myfont.woff2)
+}
+.top{
+    padding: 10px;
+
+}
+.isStor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.is_item{
+    padding: .3125rem;
+}
+input{
+    padding: .625rem .3125rem;
+    border: 1px solid #ccc;
+    border-radius: .625rem;
+    width: 10.25rem;
+    height: 1.85rem;
+    outline: none;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+}
+textarea{
+    padding: .625rem;
+    outline: none;
+    box-shadow: 0 0 .625rem #ccc;
+    border-radius: .625rem;
+}
+.switchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .625rem auto;
+    width: 4.25rem;
+    height: 1.875rem;
+    padding: .3125rem;
+    border-radius: .625rem;
+    border: 2px solid #888;
+    box-shadow: 0 0 .625rem #ccc;
+}
+select{
+    outline: none;
+}
+.log_warp{
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.text_log{
+    padding: .3125rem;
+}
+.remind{
+    padding: .625rem 0;
+    text-align: center;
+}
+.top_item{
+    padding: .325rem 1.025rem;
+    margin: .625rem;
+    border-left: .425rem solid rgb(56, 92, 133);
+    border-right: .425rem solid rgb(56, 92, 133);
+}
+.log{
+    width: 22.625rem;
+    height: 12.5rem;
+}
+footer{
+    text-align: center;
+    padding: 20px;
+}

@@ -72,7 +72,7 @@ function queen(str) {
             dst = res.trans_result[0].dst;
             log("result", dst);
         }
-        toTextELe.text(dst);
+        toTextELe.val(dst);
     })();
 }
 
@@ -86,12 +86,17 @@ function starSwitch() {
     } else {
         appid = $(".appid").val();
         key = $(".key").val();
-        let data = {
-            params: appid,
-            value: key
+        if (appid.length == 0 || key.length==0) {
+            alert('请输入appid和key!!')
+            return;
+        } else {
+            let data = {
+                params: appid,
+                value: key
+            }
+            localStorage.setItem("appid", JSON.stringify(data));
+            alert("appid已存储在内存中，如果需要更换，点击清除缓冲")
         }
-        localStorage.setItem("appid", JSON.stringify(data));
-        alert("appid已存储在内存中，如果需要更换，点击清除缓冲")
     }
     if (fromTextEle.val() === "" || appid === "" || key === "") {
         return false;
