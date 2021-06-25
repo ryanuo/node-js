@@ -20,6 +20,15 @@ var transList = {
 };
 
 var mode = "simple";
+let status = localStorage.hasOwnProperty("appid")
+if(status){
+    $('.isStor').css("display","none")
+    $(".clea").css("display","block")
+}else{
+    $('.isStor').css("display","flex")
+    $(".clea").css("display","none")
+}
+
 
 // 生成API参数
 function genParams(q, from, to) {
@@ -78,7 +87,7 @@ function queen(str) {
 
 // 开始翻译
 function starSwitch() {
-    let status = localStorage.hasOwnProperty("appid")
+    status = localStorage.hasOwnProperty("appid")
     if (status) {
         let value = localStorage.getItem("appid");
         appid = JSON.parse(value).params
@@ -95,7 +104,9 @@ function starSwitch() {
                 value: key
             }
             localStorage.setItem("appid", JSON.stringify(data));
-            alert("appid已存储在内存中，如果需要更换，点击清除缓冲")
+            $('.isStor').css("display","none")
+            $(".clea").css("display","block")
+            alert("appid已存储在缓冲中,如果需更换appid,请点击清除缓冲")
         }
     }
     if (fromTextEle.val() === "" || appid === "" || key === "") {
@@ -118,6 +129,8 @@ $(document).on('click', '#clear_storage', function () {
     let status = localStorage.hasOwnProperty("appid")
     if (status) {
         localStorage.removeItem("appid");
+        $('.isStor').css("display","flex")
+        $(".clea").css("display","none")
         alert("appid缓冲清除成功，请重新输入appid!!")
     }
 })
