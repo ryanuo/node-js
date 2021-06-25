@@ -84,6 +84,7 @@ select{
     text-align: center;
 }
 .top_item{
+    box-shadow: 0 0 .625rem #ccc;
     padding: .325rem 1.025rem;
     margin: .625rem;
     border-left: .425rem solid rgb(56, 92, 133);
