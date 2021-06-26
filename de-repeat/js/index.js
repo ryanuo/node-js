@@ -32,7 +32,7 @@ if(status){
 
 // 生成API参数
 function genParams(q, from, to) {
-    var url = "http://api.fanyi.baidu.com/api/trans/vip/translate";
+    var url = "//api.fanyi.baidu.com/api/trans/vip/translate";
     var data = {
         q: q,
         from: from,
