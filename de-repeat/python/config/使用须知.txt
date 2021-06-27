@@ -1,0 +1,8 @@
+1. 获取appid和key
+2. 去百度翻译API注册一个账号，并且进行高级认证（https://api.fanyi.baidu.com/）
+3. 可获得每月200w字符的翻译量（开通通用型翻译）
+4. 在config.json输入appid和key即可使用
+
+更新appid的方法  打开配置文件config.json (打开方式记事本即可)
+在配置文件中填写方便下次直接使用无需再次填写appid和key
+更新或者在exe界面填写后点击更新配置即可
