@@ -18,3 +18,7 @@
 1. 克隆项目
 2. 注册百度翻译api，获取appid和秘钥，[百度翻译api注册连接](https://api.fanyi.baidu.com/api/trans/product/apichoose)
 3. 打开项目index.html 填入appid和秘钥
+
+## exe版本地址
+
+【[下载地址](https://gitee.com/rbozo/de-repeat/releases)】
