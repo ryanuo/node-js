@@ -5,7 +5,7 @@ module.exports = app => {
 	// // 分类
 	app.use('/categories', require('./category'));
 	// // 文章
-	// app.use('/posts', require('./post'));
+	app.use('/posts', require('./post'));
 	// // 评论
 	// app.use('/comments', require('./comment'));
 	// // 轮播图

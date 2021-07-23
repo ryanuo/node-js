@@ -10,6 +10,10 @@
   border-color: rgba(102, 175, 233, .8);
   box-shadow: 0 0 0 2px rgba(102, 175, 233, .4);
 }
+.active{
+  color: #f6f6f6;
+  background-color: #213140;
+}
 
 body {
   background-color: #f8f9fb;
@@ -179,6 +183,8 @@ body {
   font-size: 24px;
   font-weight: 400;
 }
+
+
 
 .main .container-fluid .page-title .btn-primary {
   margin-left: 5px;

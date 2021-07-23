@@ -23,6 +23,7 @@ post.get('/search/:key', require('./actions/post/search'))
 post.get('/:id', require('./actions/post/findById'));
 // 根据ID修改文章
 post.put('/:id', require('./actions/post/findByIdAndUpdate'));
-
+// 根据传值的不同来决定返回值
+post.post('/:key',require('./actions/post/classifyRe'))
 
 module.exports = post;

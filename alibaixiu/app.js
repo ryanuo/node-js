@@ -8,6 +8,10 @@ const path = require('path');
 var session = require('express-session');
 // 处理文件上传
 const formidableMiddleware = require('express-formidable');
+// const dateformat = require('dateformat')
+// const template = require('art-template')
+// 配置日期的模块处理,模块中的第一个参数表示自定义的属性名，第二个参数表示要显示的日期格式
+// template.defaults.imports.dateformat = dateformat
 // web服务器
 const app = express();
 // 开放静态资源

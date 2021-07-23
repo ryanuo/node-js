@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
 	if (error) return res.status(400).send({message: error.details});
 	// 添加作者
 	req.fields.author = req.session.userInfo._id;
+	// req.fields.author = 'user';
 	// 创建分类
 	const post = new Post(req.fields);
 	// 保存分类

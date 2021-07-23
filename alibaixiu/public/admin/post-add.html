@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <title>Add new post &laquo; Admin</title>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="../assets/css/admin.css">
   <script src="../assets/vendors/nprogress/nprogress.js"></script>
 </head>
+
 <body>
   <script>NProgress.start()</script>
 
@@ -28,15 +30,15 @@
       <!-- <div class="alert alert-danger">
         <strong>错误！</strong>发生XXX错误
       </div> -->
-      <form class="row">
+      <form class="row" id="article_post">
         <div class="col-md-9">
           <div class="form-group">
             <label for="title">标题</label>
-            <input id="title" class="form-control input-lg" type="text" placeholder="文章标题">
+            <input id="title" name="title" class="form-control input-lg" type="text" placeholder="文章标题">
           </div>
           <div class="form-group">
             <label for="content">内容</label>
-            <textarea id="content" class="form-control input-lg" cols="30" rows="10" placeholder="内容"></textarea>
+          <textarea name="content" id="content" class="form-control input-lg" cols="30" rows="10" placeholder="内容"></textarea>
           </div>
         </div>
         <div class="col-md-3">
@@ -45,21 +47,21 @@
             <!-- show when image chose -->
             <img class="help-block thumbnail" style="display: none">
             <input id="feature" class="form-control" type="file">
+            <input type="hidden" name="thumbnail" value="" id="cover_warp">
           </div>
           <div class="form-group">
             <label for="category">所属分类</label>
-            <select id="category" class="form-control">
-              <option value="1">未分类</option>
-              <option value="2">潮生活</option>
+            <!-- 分类渲染 -->
+            <select id="category" class="form-control" name="category">
             </select>
           </div>
           <div class="form-group">
             <label for="created">发布时间</label>
-            <input id="created" class="form-control" type="datetime-local">
+            <input id="created" name="createAt" class="form-control" type="datetime-local">
           </div>
           <div class="form-group">
             <label for="status">状态</label>
-            <select id="status" class="form-control">
+            <select id="status" class="form-control" name="state">
               <option value="0">草稿</option>
               <option value="1">已发布</option>
             </select>
@@ -111,6 +113,15 @@
 
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
+  <script src="../assets/vendors/art-template/template-web.js"></script>
+  <script type="text/html" id="selectedtpl">
+    {{each data_list}}
+    <option value="{{$value._id}}">{{$value.title}}</option>
+    {{/each}}
+  </script>
+  <script src="../assets/js/post-add.js"></script>
+
   <script>NProgress.done()</script>
 </body>
+
 </html>

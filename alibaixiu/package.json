@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "art-template": "^4.13.2",
     "bcrypt": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
+    "dateformat": "^4.5.1",
     "express": "^4.16.4",
     "express-formidable": "^1.2.0",
     "express-session": "^1.15.6",
@@ -21,6 +23,9 @@
     "mongoose": "^5.3.9",
     "mongoose-query-random": "^1.0.1",
     "mongoose-sex-page": "^1.2.4",
-    "super-pagination": "^0.5.12"
+    "nodemon": "^2.0.12",
+    "super-pagination": "^0.5.12",
+    "to": "^0.2.9",
+    "update": "^0.7.4"
   }
 }
