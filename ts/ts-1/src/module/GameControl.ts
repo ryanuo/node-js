@@ -4,7 +4,7 @@
  * @Date: 2021-11-16 22:55:15
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-20 22:54:10
+ * @LastEditTime: 2021-11-20 23:32:58
  * @LastEditors: Harry
  */
 import Food from "./Food";
@@ -25,7 +25,11 @@ class GameControl {
     this.snake = new Snake();
     this.food = new Food();
     this.scorelPanel = new ScorePanel()
-    this.init()
+    this.startgame()
+  }
+  startgame() {
+    let btn = document.querySelector('#startgame')!
+    btn.addEventListener('click', this.init.bind(this))
   }
   // 游戏的初始化，调用后游戏即将开始
   init() {
@@ -35,14 +39,17 @@ class GameControl {
   }
   // 创建键盘按下的响应事件
   keydownHandler(event: KeyboardEvent) {
-    console.log(event.key);
+    // if (event.code === 'Space') {
+    //   this.isLive = !this.isLive
+    //   this.direction = 'Right'
+    //   this.init()
+    // }
     this.direction = event.key
   }
-
+  // 点击开始游戏
   run() {
     let x = this.snake.x
     let y = this.snake.y
-    console.log(this.isLive);
     switch (this.direction) {
       case "ArrowUp":
       case "Up":
@@ -63,9 +70,30 @@ class GameControl {
       default:
         this.isLive = !this.isLive
     }
-    this.snake.x = x
-    this.snake.y = y
+    this.checkEat(x, y)
+    try {
+      this.snake.x = x
+      this.snake.y = y
+    } catch (e: any) {
+      alert(e.message + 'GAME OVER!');
+      // 将isLive设置为false
+      this.isLive = false;
+      this.isLive = false
+    }
     this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorelPanel.level - 1) * 30);
+  }
+
+  // 定义一个方法，用来检查蛇是否吃到食物
+  checkEat(X: number, Y: number) {
+    if (X === this.food.x && Y === this.food.y) {
+      console.log('吃到食物了~~');
+      // 食物的位置进行重置
+      this.food.change();
+      // 分数增加
+      this.scorelPanel.addScore();
+      // 蛇要增加一节
+      this.snake.addBody();
+    }
   }
 }
 

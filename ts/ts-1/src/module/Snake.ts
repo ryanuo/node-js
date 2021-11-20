@@ -4,7 +4,7 @@
  * @Date: 2021-11-16 22:39:22
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-20 22:55:47
+ * @LastEditTime: 2021-11-20 23:15:43
  * @LastEditors: Harry
  */
 class Snake {
@@ -45,11 +45,11 @@ class Snake {
       }
     }
     // 移动身体
-    // this.moveBody();
+    this.moveBody();
 
     this.head.style.left = value + 'px';
     // 检查有没有撞自己
-    // this.checkHeadBody();
+    this.checkHeadBody();
   }
 
   set y(value: number) {
@@ -74,16 +74,51 @@ class Snake {
       }
     }
     // 移动身体
-    // this.moveBody();
+    this.moveBody();
 
     this.head.style.top = value + 'px';
     // 检查有没有撞自己
-    // this.checkHeadBody();
+    this.checkHeadBody();
   }
   // 添加蛇
   addBody() {
     this.element.insertAdjacentHTML("beforeend", "<div></div>")!;
   }
+
+  // 添加一个蛇身体移动的方法
+  moveBody() {
+    /* 
+        从后往前改
+        将后面的身体设置为前面身体的位置
+            举例子：
+                第4节 = 第3节的位置
+                第3节 = 第2节的位置
+                第2节 = 蛇头的位置
+    */
+    //遍历获取所有的身体
+    for (let i = this.bodies.length - 1; i > 0; i--) {
+      // 获取前面身体的位置
+      let X = (this.bodies[i - 1] as HTMLElement).offsetLeft;
+      let Y = (this.bodies[i - 1] as HTMLElement).offsetTop;
+      // 将这个值设置到当前身体上
+      (this.bodies[i] as HTMLElement).style.left = X + 'px';
+      (this.bodies[i] as HTMLElement).style.top = Y + 'px';
+
+    }
+  }
+
+  // 检查蛇头是否撞到身体的方法
+  checkHeadBody() {
+    // 获取所有的身体，检查是否和蛇头的坐标发生重叠
+    for (let i = 1; i < this.bodies.length; i++) {
+      let bd = this.bodies[i] as HTMLElement;
+      if (this.x === bd.offsetLeft && this.y === bd.offsetTop) {
+        // 进入判断说明蛇头撞到了身体，游戏结束
+        throw new Error("撞到自己了~~");
+      }
+    }
+  }
+
 }
 
 export default Snake
