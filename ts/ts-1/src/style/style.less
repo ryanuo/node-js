@@ -1,0 +1,59 @@
+@bg-color: #b7d4a8;
+
+#main {
+  width: 360px;
+  height: 420px;
+  background-color: @bg-color;
+  margin: 100px auto;
+  border: 10px solid #000;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+}
+// 设置舞台样式
+#stage {
+  width: 304px;
+  height: 304px;
+  border: 2px solid #000;
+  position: relative;
+  #snake {
+    &>div {
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      background-color: #000;
+      border: 1px solid @bg-color;
+    }
+  }
+}
+
+#score-panel {
+  font: bold 20px 'Courier';
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+// 设置食物样式
+#food{
+  width: 10px;
+  height: 10px;
+  // background-color: #fff;
+  // border: 1px solid @bg-color;
+  position: absolute;
+  left: 40px;
+  top: 100px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  &>div{
+    // flex: 50%;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+    transform: rotateZ(-45deg);
+  }
+}
