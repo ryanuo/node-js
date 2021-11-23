@@ -1,10 +1,10 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: Harry
  * @Date: 2021-11-21 22:52:05
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-21 23:20:12
+ * @LastEditTime: 2021-11-23 22:11:56
  * @LastEditors: Harry
  */
 // let arr = ['直男']
@@ -37,10 +37,24 @@
 // }
 // hd.render()
 // console.log(hd);
-function User(username: string) {
-  this.name = username
-}
-// console.log(User);
-let hd = new User("直男")
+// function User(username: string) {
+//   this.name = username
+// }
+// // console.log(User);
+// let hd = new User("直男")
 // User.apply/
 // 函数也是对象
+// class User {
+//   name: string
+//   constructor(name: string) {
+//     this.name = name
+//   }
+//   show() {
+//     console.log('直男 show');
+//   }
+// }
+// let hd = new User('直男')
+// hd.show()
+// console.dir(hd);
+// console.log((hd as any).__proto__ == User.prototype);
+import './pro.js'
