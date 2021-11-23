@@ -4,7 +4,7 @@
  * @Date: 2021-11-22 10:54:56
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-22 23:53:44
+ * @LastEditTime: 2021-11-23 20:43:23
  * @LastEditors: Harry
  */
 
@@ -90,29 +90,55 @@
 //   return _res(a, n, m + n - 1)
 // }
 
-function _reserve(a: any, m = 4, n = 2) {
-  /*
-   s 参数表示开始的索引位置，
-   e 表示结束的索引位置
-  **/
-  function _res(A: any, s: number, e: number) {
-    while (e - s >= 0) {
-      let t = A[s]
-      A[s] = A[e]
-      A[e] = t
-      s++;
-      e--
-    }
-  }
-  // 全逆置 （0,5）
-  _res(a, 0, m + n - 1)
-  _res(a, 0, n - 1)
-  _res(a, n, m + n - 1)
-  return a
-}
-console.log(_reserve([1, 2, 5, 4, 6, 9], 4, 2));  // 返回 [6, 9, 1, 2, 5, 4]
+// function _reserve(a: any, m = 4, n = 2) {
+//   // 判断当m或者n的长度是否为0时
+//   if (m == 0 || n == 0) return a
+//   function _res(A: any, s: number, e: number) {
+//     /*
+//     s 参数表示开始的索引位置，
+//     e 表示结束的索引位置
+//     **/
+//     while (e - s >= 0) {
+//       if (A[s] !== A[e]) {
+//         let t = A[s]
+//         A[s] = A[e]
+//         A[e] = t
+//       }
+//       s++;
+//       e--
+//     }
+//   }
+//   // 全逆置 （0,5）
+//   _res(a, 0, m + n - 1)
+//   if (n !== 1) _res(a, 0, n - 1)
+//   if (m !== 1) _res(a, n, m + n - 1)
+//   return a
+// }
+// console.log(_reserve(['d','w','as','dsa','w'], 1, 4));  // 返回 [6, 9, 1, 2, 5, 4]
 // function _reserve(arr: any, m: number, n: number) {
 //   return arr.slice(m).concat(arr.slice(0, m))
 // }
 
 // console.log(_reserve([1, 2, 5, 4, 6, 9], 4, 2));
+
+
+var name = 'lily'
+var a = {
+  name: "lucy",
+  getName1() {
+    console.log(this.name);
+  },
+  getName2() {
+    console.log(this.name);
+  }
+}
+var b = {
+  name: "jack"
+}
+var c = {
+  name: "christopher"
+}
+a.getName1() // lucy
+a.getName2() // lucy
+var fn1 = a.getName1
+fn1()
