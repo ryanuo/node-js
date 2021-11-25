@@ -4,7 +4,7 @@
  * @Date: 2021-11-23 22:13:40
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-24 23:07:33
+ * @LastEditTime: 2021-11-25 12:46:23
  * @LastEditors: Harry
  */
 // function User() { }
@@ -162,23 +162,30 @@
 // // // member.role()
 // member.view()
 // admin.view()
-  function _extend(child, parent) {
-    child.prototype = Object.create(parent.prototype)
-    Object.defineProperty(child.prototype, 'constructor', {
-      value: child,
-      enumerable: false
-    })
-  }
-  function Person() {
-    this.name = 'zs'
-    this.age = 20
-  }
-  Person.prototype.view = function () {
-    console.log(this.name);
-  }
-  function Child() {
-    Person.call(this)
-  }
-  _extend(Child, Person)
-  let hd = new Child()
-  hd.view()  // zs
+// function _extend(child, parent) {
+//   child.prototype = Object.create(parent.prototype)
+//   Object.defineProperty(child.prototype, 'constructor', {
+//     value: child,
+//     enumerable: false
+//   })
+// }
+// function Person() {
+//   this.name = 'zs'
+//   this.age = 20
+// }
+// Person.prototype.view = function () {
+//   console.log(this.name);
+// }
+// function Child() {
+//   Person.call(this)
+// }
+// _extend(Child, Person)
+// let hd = new Child()
+// hd.view()  // zs
+
+
+// let ad = [1, 321, 2312, 321, 2, 4, 12]
+// let b = [123, 23, 13, 2, 31, 32]
+// console.log(ad);
+// Array.prototype.push.apply(ad, b)
+// console.log(ad);
