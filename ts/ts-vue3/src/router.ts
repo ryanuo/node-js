@@ -4,9 +4,10 @@
  * @Date: 2021-11-27 17:59:16
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-27 18:32:17
+ * @LastEditTime: 2021-11-27 20:25:47
  * @LastEditors: Harry
  */
+// createWebHistory
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from './components/Home.vue';
 import UserVue from './components/User.vue';
