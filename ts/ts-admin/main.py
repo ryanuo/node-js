@@ -1,14 +1,15 @@
 # 导入数据库模块
 import json
-# import pymysql
 # 导入Flask框架，这个框架可以快捷地实现了一个WSGI应用
-import datetime
 from flask import Flask
 # 默认情况下，flask在程序文件夹中的templates子文件夹中寻找模块
 from flask import render_template
 # 导入前台请求的request模块
 from flask import request
+from werkzeug.datastructures import ImmutableMultiDict
+
 from connect import MysqlHelper
+from cloud.db_config import Cloud
 
 # import traceback
 # 传递根目录
@@ -56,8 +57,19 @@ def api_list():
             return json.dumps({"msg": "登录失败", "status_code": -1}, ensure_ascii=False)
     elif request.method == 'POST':
         return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
-
-
+# 获取新闻数据
+@app.route('/news',methods=['POST',"GET"])
+def news_list():
+    if request.method == 'GET':
+        key = request.args.get('key')
+        pagesize = request.args.get('pagesize')
+        pagenum = request.args.get('pagenum')
+        if not key:
+            return json.dumps({"msg": '参数有误', "status_code": -1})
+        # print(ImmutableMultiDict(request.args).to_dict())
+        return Cloud(key).databaseQuery(pagenum,pagesize)
+    elif request.method == 'POST':
+        return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
 # 登录请求
 @app.route('/login', methods=['POST', 'GET'])
 def login_user():
