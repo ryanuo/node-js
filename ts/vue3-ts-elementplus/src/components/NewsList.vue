@@ -4,7 +4,7 @@
  * @Date: 2021-11-28 21:41:04
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-11-29 20:49:33
+ * @LastEditTime: 2021-12-02 18:19:28
  * @LastEditors: Harry
 -->
 <template>
@@ -153,11 +153,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h2_w {
-  font-size: 19px;
-  font-weight: 550;
-  margin: 20px 0;
-}
 .el-tag {
   cursor: pointer;
 }

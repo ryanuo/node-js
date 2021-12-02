@@ -29,6 +29,11 @@ const routes = [
         component: () => import('../components/User.vue')
       },
       {
+        path: "/rank",
+        name: 'Rank',
+        component: () => import('../components/Rank.vue')
+      },
+      {
         path: "/setting",
         name: 'Setting',
         component: () => import('../components/Setting.vue')

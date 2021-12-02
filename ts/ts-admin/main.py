@@ -57,8 +57,10 @@ def api_list():
             return json.dumps({"msg": "登录失败", "status_code": -1}, ensure_ascii=False)
     elif request.method == 'POST':
         return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
+
+
 # 获取新闻数据
-@app.route('/news',methods=['POST',"GET"])
+@app.route('/news', methods=['POST', "GET"])
 def news_list():
     if request.method == 'GET':
         key = request.args.get('key')
@@ -67,9 +69,28 @@ def news_list():
         if not key:
             return json.dumps({"msg": '参数有误', "status_code": -1})
         # print(ImmutableMultiDict(request.args).to_dict())
-        return Cloud(key).databaseQuery(pagenum,pagesize)
+        return Cloud(key).databaseQuery(pagenum, pagesize)
     elif request.method == 'POST':
         return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
+
+
+# 积分展示
+@app.route('/rank', methods=['POST', "GET"])
+def rank_():
+    if request.method == 'GET':
+        s = request.args.get('key')
+        if s == 'rank':
+            key = 'rank_sort'
+        pagesize = request.args.get('pagesize')
+        pagenum = request.args.get('pagenum')
+        if not key:
+            return json.dumps({"msg": '参数有误', "status_code": -1})
+        # print(ImmutableMultiDict(request.args).to_dict())
+        return Cloud(key).databaseQuery(pagenum, pagesize)
+    elif request.method == 'POST':
+        return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
+
+
 # 登录请求
 @app.route('/login', methods=['POST', 'GET'])
 def login_user():
