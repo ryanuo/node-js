@@ -6,8 +6,8 @@
     label-width="100px"
     class="registerForm sign-up-form"
   >
-    <el-form-item label="用户名" prop="name">
-      <el-input v-model="registerUser.name" placeholder="Enter UserName..."></el-input>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="registerUser.username" placeholder="Enter UserName..."></el-input>
     </el-form-item>
     <el-form-item label="邮箱" prop="email">
       <el-input v-model="registerUser.email" placeholder="Enter Email..."></el-input>
@@ -47,12 +47,20 @@ export default {
       required: true,
     },
   },
-  setup() {
+  setup(prop: any) {
     // @ts-ignore
     const { ctx } = getCurrentInstance();
     const handleRegister = (formName: string) => {
-      ctx.$refs[formName].validate((valid: boolean) => {
+      ctx.$refs[formName].validate(async (valid: boolean) => {
         if (valid) {
+          const { data: res } = await ctx.$http.post('/proxy/api', {
+            data: prop.registerUser
+          })
+          if (res.status_code == 1) {
+            ctx.$message.success(res.msg)
+          } else {
+            ctx.$message.error(res.msg)
+          }
         } else {
           console.log("error submit!!");
           return false;

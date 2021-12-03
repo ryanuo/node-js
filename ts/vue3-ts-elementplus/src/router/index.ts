@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+// import $cookie from '../utils/cookieConfig'
 
 const routes = [
   {
+    path: "/",
+    redirect: "/home"
+  },
+  {
     path: '/home',
     name: 'Home',
-    redirect:"/hello",
+    redirect: "/hello",
     component: () => import('../views/Home.vue'),
     children: [
       {
@@ -59,6 +63,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // console.log($cookie.getCookie('iui9@qq.com'));
   if (to.path === '/login') return next()
   const token = localStorage.getItem('token')
   if (!token) return next('/login')

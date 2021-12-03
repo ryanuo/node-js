@@ -1,17 +1,12 @@
 # 导入数据库模块
-import json
-# 导入Flask框架，这个框架可以快捷地实现了一个WSGI应用
-from flask import Flask
-# 默认情况下，flask在程序文件夹中的templates子文件夹中寻找模块
-from flask import render_template
+import json, datetime
 # 导入前台请求的request模块
-from flask import request
+from flask import request, Flask, render_template
 from werkzeug.datastructures import ImmutableMultiDict
 
 from connect import MysqlHelper
 from cloud.db_config import Cloud
 
-# import traceback
 # 传递根目录
 app = Flask(__name__, template_folder='templates', static_folder='')
 self = {
@@ -56,7 +51,40 @@ def api_list():
         else:
             return json.dumps({"msg": "登录失败", "status_code": -1}, ensure_ascii=False)
     elif request.method == 'POST':
-        return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
+        try:
+            if request.content_type.startswith('application/json'):
+                comment = request.get_json()['data']
+                # comment = request.json.to_dict()
+                # print(comment['data'])
+            elif request.content_type.startswith('multipart/form-data'):
+                comment = request.form.to_dict()
+            else:
+                comment = request.values.to_dict()
+                print(comment)
+        except:
+            return json.dumps({"msg": "注册参数有误", "status_code": -1}, ensure_ascii=False)
+        else:
+            dt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            sql = '''
+                INSERT INTO db_user ( username, email, password, role, create_time )
+                SELECT	%s, %s, %s, %s, %s
+                FROM DUAL
+                WHERE
+                    NOT EXISTS (SELECT username FROM db_user WHERE username = %s);
+            '''
+            status = MysqlHelper(self).cud(sql,
+                                           [comment['username'], comment['email'], comment['password'], comment['role'],
+                                            dt,comment['username']])
+            print(status)
+            if status['status_code'] == 1:
+                data_res = {
+                    "msg": "注册成功",
+                    "status_code": status['status_code'],
+                    "data": status
+                }
+                return json.dumps(data_res, ensure_ascii=False)
+            else:
+                return json.dumps({"msg": "用户名已重复", "status_code": -1}, ensure_ascii=False)
 
 
 # 获取新闻数据
@@ -79,14 +107,13 @@ def news_list():
 def rank_():
     if request.method == 'GET':
         s = request.args.get('key')
-        if s == 'rank':
-            key = 'rank_sort'
         pagesize = request.args.get('pagesize')
         pagenum = request.args.get('pagenum')
-        if not key:
+        if not s:
             return json.dumps({"msg": '参数有误', "status_code": -1})
         # print(ImmutableMultiDict(request.args).to_dict())
-        return Cloud(key).databaseQuery(pagenum, pagesize)
+        # 加密返回_openid
+        return Cloud('ranking_sort').databaseQuery(pagenum, pagesize, True)
     elif request.method == 'POST':
         return json.dumps({"msg": "当前为Post请求", "status_code": 2}, ensure_ascii=False)
 

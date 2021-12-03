@@ -28,6 +28,7 @@
 </template>
 
 <script lang="ts">
+import Base64 from "@/utils/base64";
 import { ref, getCurrentInstance } from "vue";
 export default {
   props: {
@@ -64,7 +65,14 @@ export default {
         }
       })
       if (res.status_code == 1) {
+        let bs = new Base64()
+        for (let i in res.data) {
+          if (typeof res.data[i] == 'string') {
+            res.data[i] = bs.encode(res.data[i]) // 进行加密处理
+          }
+        }
         ctx.$message.success(res.msg)
+        ctx.$cookie.setCookie(email, '')
         localStorage.setItem('token', JSON.stringify(res.data))
         ctx.$router.replace('/home')
       } else {
