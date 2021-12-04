@@ -30,6 +30,7 @@
 <script lang="ts">
 import Base64 from "@/utils/base64";
 import { ref, getCurrentInstance } from "vue";
+import { ElMessage, ElMessageBox } from 'element-plus';
 export default {
   props: {
     loginUser: {
@@ -44,6 +45,36 @@ export default {
   setup() {
     // @ts-ignore
     const { ctx } = getCurrentInstance();
+    const open = function (params: Object) {
+      ElMessageBox.confirm(
+        '你的账户还未激活，选择激活我们将给您的邮箱发送一个激活地址，进入邮箱中确认激活哦',
+        '激活账户',
+        {
+          distinguishCancelAndClose: true,
+          confirmButtonText: '激活',
+          cancelButtonText: '取消',
+        }
+      )
+        .then(async () => {
+          let data = params
+          const { data: res } = await ctx.$http.put('/proxy/isactive', data)
+          if (res.status_code == 1) {
+            ElMessage({
+              type: 'success',
+              message: '我们给您的邮箱发送已发送激活地址',
+            })
+          }
+        })
+        .catch((action) => {
+          ElMessage({
+            type: 'info',
+            message:
+              action === 'cancel'
+                ? 'Changes discarded. Proceeding to a new route.'
+                : 'Stay in the current route',
+          })
+        })
+    }
     // 触发登录方法
     const handleLogin = (formName: string) => {
       ctx.$refs[formName].validate((valid: boolean) => {
@@ -75,12 +106,15 @@ export default {
         ctx.$cookie.setCookie(email, '')
         localStorage.setItem('token', JSON.stringify(res.data))
         ctx.$router.replace('/home')
-      } else {
+      } else if (res.status_code == -2) {
+        open({ email, password })
+      }
+      else {
         ctx.$message.error(res.msg);
       }
     }
 
-    return { handleLogin };
+    return { handleLogin, open };
   },
 };
 </script>

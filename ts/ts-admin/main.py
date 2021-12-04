@@ -3,7 +3,7 @@ import json, datetime
 # 导入前台请求的request模块
 from flask import request, Flask, render_template
 from werkzeug.datastructures import ImmutableMultiDict
-
+from cloud.email_active import activeUser  # 邮箱请求
 from connect import MysqlHelper
 from cloud.db_config import Cloud
 
@@ -44,10 +44,13 @@ def api_list():
                     "email": status['data'][3],
                     "sex": status['data'][4],
                     "role": status['data'][6],
-                    "create_time": str(status['data'][5])
+                    "create_time": str(status['data'][5]),
                 }
             }
-            return json.dumps(data_res, ensure_ascii=False)
+            if status['data'][7] == '0':
+                return json.dumps({"msg": "账户未激活,请重新激活,已发送至您的邮箱,点击邮箱中激活按钮激活信息", "status_code": -2})
+            elif status['data'][7] == '1':
+                return json.dumps(data_res, ensure_ascii=False)
         else:
             return json.dumps({"msg": "登录失败", "status_code": -1}, ensure_ascii=False)
     elif request.method == 'POST':
@@ -65,16 +68,17 @@ def api_list():
             return json.dumps({"msg": "注册参数有误", "status_code": -1}, ensure_ascii=False)
         else:
             dt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            # 判断是否已存在，如果存在则无法插入
             sql = '''
                 INSERT INTO db_user ( username, email, password, role, create_time )
                 SELECT	%s, %s, %s, %s, %s
                 FROM DUAL
                 WHERE
-                    NOT EXISTS (SELECT username FROM db_user WHERE username = %s);
+                    NOT EXISTS (SELECT username FROM db_user WHERE username = %s or email = %s);
             '''
             status = MysqlHelper(self).cud(sql,
                                            [comment['username'], comment['email'], comment['password'], comment['role'],
-                                            dt,comment['username']])
+                                            dt, comment['username'], comment['email']])
             print(status)
             if status['status_code'] == 1:
                 data_res = {
@@ -84,8 +88,32 @@ def api_list():
                 }
                 return json.dumps(data_res, ensure_ascii=False)
             else:
-                return json.dumps({"msg": "用户名已重复", "status_code": -1}, ensure_ascii=False)
+                return json.dumps({"msg": "用户名或者邮箱已重复", "status_code": -1}, ensure_ascii=False)
 
+# 用户账户的激活
+@app.route('/isactive',methods=['POST',"GET","PUT"])
+def isActive():
+    if request.method == 'GET':
+        msg = request.args.to_dict()
+        sql = '''
+        UPDATE db_user SET isactive = %s
+        WHERE email = %s and password=%s and isactive= %s
+        '''
+        status = MysqlHelper(self).cud(sql,
+                                       ('1',msg['email'],msg['password'],'0'))
+        if status['status_code'] == 1:
+            return json.dumps({'msg': "您的账户已激活", 'status_code': 1})
+        elif status['status_code'] == 0:
+            return json.dumps({'msg': "请不要重复激活", 'status_code': 0})
+    elif request.method == 'PUT':
+        if request.content_type.startswith('application/json'):
+            comment = request.get_json()
+        elif request.content_type.startswith('multipart/form-data'):
+            comment = request.form.to_dict()
+        else:
+            comment = request.values.to_dict()
+        activeUser(comment)
+        return json.dumps({'msg': "验证信息已发送",'status_code':1})
 
 # 获取新闻数据
 @app.route('/news', methods=['POST', "GET"])
