@@ -118,14 +118,17 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* form */
 .loginForm {
-  margin-top: 20px;
+  margin: 0 14px;
   background-color: #fff;
   padding: 20px 40px 20px 20px;
   border-radius: 5px;
   box-shadow: 0px 5px 10px #cccc;
+  @media only screen and(max-width:800px) {
+    // margin-top: 100px;
+  }
 }
 
 .submit-btn {

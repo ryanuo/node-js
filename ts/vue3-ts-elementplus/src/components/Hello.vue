@@ -4,7 +4,7 @@
  * @Date: 2021-11-29 13:24:10
  * @Url: https://u.mr90.top
  * @github: https://github.com/rr210
- * @LastEditTime: 2021-12-04 20:56:41
+ * @LastEditTime: 2021-12-05 13:24:02
  * @LastEditors: Harry
 -->
 <template>
@@ -130,6 +130,9 @@ export default {
 <style lang="scss" scoped>
 .upload-demo {
   width: 600px;
+  @media only screen and(max-width:800px) {
+    width: 300px;
+  }
 }
 .upload_f {
   width: 100%;

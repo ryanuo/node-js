@@ -7,10 +7,7 @@
         <LoginForm :loginUser="loginUser" :rules="rules" />
 
         <!-- 注册 -->
-        <RegisterForm
-          :registerUser="registerUser"
-          :registerRules="registerRules"
-        />
+        <RegisterForm :registerUser="registerUser" :registerRules="registerRules" />
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -18,21 +15,17 @@
       <div class="panel left-panel">
         <div class="content">
           <h3>学习是为了有更多的选择,让生活变的更美好!</h3>
-          <button @click="signUpMode = !signUpMode" class="btn transparent">
-            注册
-          </button>
+          <button @click="signUpMode = !signUpMode" class="btn transparent">注册</button>
         </div>
-        <img src="@/assets/img/log.svg" class="image" alt="" />
+        <img src="@/assets/img/log.svg" class="image" />
       </div>
 
       <div class="panel right-panel">
         <div class="content">
           <h3>以人为镜,可明得失</h3>
-          <button @click="signUpMode = !signUpMode" class="btn transparent">
-            登录
-          </button>
+          <button @click="signUpMode = !signUpMode" class="btn transparent">登录</button>
         </div>
-        <img src="@/assets/img/register.svg" class="image" alt="" />
+        <img src="@/assets/img/register.svg" class="image" />
       </div>
     </div>
   </div>
@@ -267,7 +260,7 @@ export default {
   }
   .signin-signup {
     width: 100%;
-    top: 95%;
+    top: 120%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -358,9 +351,15 @@ export default {
   }
 
   .container.sign-up-mode .signin-signup {
-    top: 5%;
+    top: -15%;
     transform: translate(-50%, 0);
   }
+  /* form.sign-in-form {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  } */
 }
 
 @media (max-width: 570px) {
@@ -407,7 +406,7 @@ form.sign-up-form {
 
 /* register */
 .registerForm {
-  margin-top: 20px;
+  margin: 0 14px;
   background-color: #fff;
   padding: 20px 40px 20px 20px;
   border-radius: 5px;

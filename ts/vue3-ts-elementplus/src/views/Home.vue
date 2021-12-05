@@ -46,8 +46,9 @@
   </div>
 </template>
 <script lang="ts">
-import { ref, getCurrentInstance, reactive } from "vue";
+import { ref, getCurrentInstance, reactive, onMounted } from "vue";
 import { menuList } from '@/utils/menuList'
+// import debounce_merge from "@/utils/debounce";
 import DbHeader from '@/components/DbHeader.vue'
 export default {
   name: "Home",
@@ -89,6 +90,19 @@ export default {
       if (isActive) return ispathActive.value = isActive
     }
     getActive()
+    // let screenWidth = ref('')
+    // const fn = function () {
+    //   let widthClient = document.body.clientWidth
+    //   console.log(widthClient);
+    //   if (widthClient == 375) { 
+
+    //   }
+    // }
+    // // 计算窗口大小/ 介入防抖机制
+    // const countClient = debounce_merge(fn, 200)
+    // onMounted(() => {
+    //   window.addEventListener('resize', countClient)
+    // })
     return {
       changeSkin,
       menuList,
@@ -123,6 +137,9 @@ export default {
 
 .aside-con {
   // background-color: var(--skinColor);
+  @media only screen and (max-width:800px) {
+    display: none;
+  }
   .el-menu {
     border-right: none;
   }
@@ -168,5 +185,4 @@ export default {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }
-
 </style>>
