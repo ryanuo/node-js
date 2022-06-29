@@ -3,8 +3,8 @@
  * @Date: 2022-06-21 14:00:14
  * @LastEditors: harry
  * @Github: https://github.com/rr210
- * @LastEditTime: 2022-06-29 10:51:51
- * @FilePath: \myapp\src\components\Meals\Meal\Meal.js
+ * @LastEditTime: 2022-06-29 19:40:35
+ * @FilePath: \node-js\react\myapp\src\components\Meals\Meal\Meal.js
  */
 import React from 'react'
 import classes from './Meal.module.css'
@@ -13,7 +13,7 @@ export const Meal = (props) => {
     return (
         <div className={classes.Meal}>
             <div className={classes.imgBox}>
-                <img src={props.meal.img} alt='' />
+                <img src={`${props.meal.img}`} alt='' />
             </div>
             <div className={classes.detail}>
                 <h5 className={classes.Title}>{props.meal.title}</h5>
