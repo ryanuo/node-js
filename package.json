@@ -2,7 +2,7 @@
     "name": "myapp",
     "version": "0.1.0",
     "scripts": {
-        "gh": "gh-pages -d react/myapp/build"
+        "gh": "gh-pages -d build"
     },
     "dependencies": {
         "gh-pages": "^4.0.0"
