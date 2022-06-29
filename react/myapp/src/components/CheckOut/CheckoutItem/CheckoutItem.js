@@ -3,8 +3,8 @@
  * @Date: 2022-06-29 15:45:05
  * @LastEditors: harry
  * @Github: https://github.com/rr210
- * @LastEditTime: 2022-06-29 16:09:38
- * @FilePath: \myapp\src\components\CheckOut\CheckoutItem\CheckoutItem.js
+ * @LastEditTime: 2022-06-29 20:01:30
+ * @FilePath: \node-js\react\myapp\src\components\CheckOut\CheckoutItem\CheckoutItem.js
  */
 import React from 'react'
 import { Count } from '../../UI/Count/Count'
@@ -13,7 +13,7 @@ export const CheckoutItem = (props) => {
     return (
         <div className={classes.CheckoutItem}>
             <div className={classes.img_}>
-                <img src="/img/meals/1.png" alt="" />
+                <img src={props.meal.img} alt="" />
             </div>
             <div className={classes.rwrap}>
                 <h2>{props.meal.title}</h2>
