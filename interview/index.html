@@ -1,0 +1,102 @@
+<!--
+ * @Author: Harry
+ * @Date: 2022-03-26 18:02:22
+ * @LastEditors: harry
+ * @Github: https://github.com/rr210
+ * @LastEditTime: 2022-03-27 12:45:35
+ * @FilePath: \interview\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原生的promise
+        // const promise = new Promise((reslove, reject) => {
+        //     throw new Error('抛出错误')
+        // }).then(() => { }, (result) => { console.log(result.message); })
+        class Commitment {
+            // 状态 PENDING FULFILLED REJECTED,三种状态分别为待定成功拒绝，并且三种方法不能逆转
+            static PENDING = '待定'; static FULFILLED = '成功'; static REJECTED = '拒绝';
+            constructor(func) {
+                this.status = Commitment.PENDING //开始时进入的状态是待定状态
+                this.result = null
+                this.resloveCallbacks = []
+                this.rejectCallbacks = []
+                // 然后传入的参数函数方法，这里使用bind方法是因为类原型方法中使用了this.status，但是在函数外部并没有定义这个变量，因此要改变当前this指向
+                try {
+                    func(this.reslove.bind(this), this.reject.bind(this))
+                } catch (error) {
+                    this.reject(error)
+                }
+            }
+            // 成功时执行的方法
+            reslove(result) {
+                setTimeout(() => {
+                    if (this.status === Commitment.PENDING) {
+                        this.status = Commitment.FULFILLED
+                        this.result = result
+                        this.resloveCallbacks.forEach(callback => {
+                            callback(result)
+                        })
+                    }
+                })
+            }
+            // 拒绝时执行的方法
+            reject(result) {
+                setTimeout(() => {
+                    if (this.status === Commitment.PENDING) {
+                        this.status = Commitment.REJECTED
+                        this.result = result
+                        this.rejectCallbacks.forEach(callback => {
+                            callback(result)
+                        })
+                    }
+                })
+            }
+            then(ONFILFILLED, ONREJECTED) {
+                return new Commitment((reslove, reject) => {
+                    ONFILFILLED = typeof (ONFILFILLED) === 'function' ? ONFILFILLED : () => { }
+                    ONREJECTED = typeof (ONREJECTED) === 'function' ? ONREJECTED : () => { }
+                    if (this.status === Commitment.PENDING) {
+                        this.resloveCallbacks.push(ONFILFILLED)
+                        this.rejectCallbacks.push(ONREJECTED)
+                    }
+                    if (this.status === Commitment.FULFILLED) {
+                        setTimeout(() => {
+                            ONFILFILLED(this.result)
+                        })
+                    }
+                    if (this.status === Commitment.REJECTED) {
+                        setTimeout(() => {
+                            ONREJECTED(this.result)
+                        })
+                    }
+                })
+            }
+        }
+        console.log(1);
+        const a = new Commitment(function (reslove, reject) {
+            // throw new Error('抛出错误')
+            console.log(2);
+            setTimeout(() => {
+                reslove(4)
+                console.log(5);
+            })
+        })
+        a.then(
+            result => console.log(result),
+            result => { console.log(result.message); }
+        )
+        console.log(3);
+    </script>
+</body>
+
+</html>

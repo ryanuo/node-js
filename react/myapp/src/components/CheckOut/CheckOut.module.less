@@ -1,0 +1,53 @@
+.Checkout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f0f0f0;
+    z-index: 99999;
+}
+
+.Icon {
+    font-size: 40rem;
+    margin: 20rem;
+}
+
+.CheckOutDesc {
+    margin: 20rem;
+    padding: 0 20rem;
+    background-color: #fff;
+    border-radius: 20rem;
+
+    header {
+        height: 80rem;
+        line-height: 80rem;
+        margin: 0;
+        font-size: 20rem;
+        font-weight: bold;
+        border-bottom: 1px solid #f2f2f2;
+    }
+
+    footer {
+        border-top: 1px dashed #f2f2f2;
+        height: 120rem;
+        line-height: 120rem;
+        text-align: right;
+
+        span {
+            font-size: 25rem;
+            font-weight: bold;
+
+            &::before {
+                font-size: 12rem;
+                font-weight: initial;
+                content: '￥';
+            }
+        }
+    }
+}
+
+.meals {
+    max-height: 800rem;
+    overflow: auto;
+}

@@ -1,0 +1,34 @@
+.SearchWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90rem;
+  border: 1px solid #f2f2f2;
+}
+.Search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 55rem;
+  padding: 5px 2px;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+}
+.icon_s {
+  font-size: 30rem;
+  color: #cbcbcb;
+}
+.input_s {
+  width: 100%;
+}
+.input_s input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: transparent;
+}

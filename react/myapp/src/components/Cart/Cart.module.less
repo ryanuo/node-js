@@ -1,0 +1,77 @@
+.Cart {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 30rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #585252;
+    width: 90%;
+    height: 80rem;
+    border-radius: 40rem;
+    z-index: 9999;
+}
+
+.Icon {
+    width: 80rem;
+    position: absolute;
+    bottom: -8rem;
+
+    img {
+        width: 100%;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        right: -10rem;
+        width: 36rem;
+        height: 36rem;
+        color: #fff;
+        background-color: red;
+        border-radius: 50%;
+        font-size: 22rem;
+        line-height: 36rem;
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+.btn,
+.nobtn {
+    width: 200rem;
+    outline: none;
+    border: none;
+    border-radius: 40rem;
+    font-size: 30rem;
+    font-weight: 500;
+    background-color: #f1b600;
+}
+
+.nobtn {
+    background-color: #6f6f6f;
+    color: #949494;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 32rem;
+    font-weight: 500;
+    margin-left: 120rem;
+}
+
+.price::before {
+    content: '￥';
+    font-size: 24rem;
+}
+
+.noprice {
+    .price;
+    font-size: 40rem;
+    color: #aaa;
+    font-weight: 500;
+}

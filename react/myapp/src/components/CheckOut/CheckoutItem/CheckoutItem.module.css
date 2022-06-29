@@ -1,0 +1,31 @@
+.CheckoutItem {
+  display: flex;
+}
+.img_ {
+  width: 150rem;
+}
+.img_ img {
+  width: 100%;
+}
+.rwrap {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.rwrap h2 {
+  font-size: 23rem;
+}
+.couterW {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price {
+  font-size: 23rem;
+  font-weight: 600;
+}
+.price::before {
+  content: '￥';
+  font-size: 12rem;
+}
